@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ movie_data.title }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|Poppins">
+</head>
+<body>
+    <h1>{{ movie_data.title }}</h1>
+
+    {% if error_message %}
+        <p style="color: red;"><strong>{{ error_message }}</strong></p>
+    {% else %}
+        <img src="{{ movie_data.poster }}" width="200px">
+
+        <p><strong>Rating:</strong> {{ "⭐" * (movie_data.rating | int) }} ({{ movie_data.rating }}/10)</p>
+        <p><strong>Description:</strong> {{ movie_data.overview }}</p>
+
+        <!-- ✅ Add to Favorites Button -->
+        <form method="post" action="{{ url_for('add_favorite') }}">
+            <input type="hidden" name="movie_title" value="{{ movie_data.title }}">
+            <button type="submit">⭐ Add to Favorites</button>
+        </form>
+    {% endif %}
+
+    <hr>
+    <a href="{{ url_for('index') }}">⬅ Back to Search</a>
+</body>
+</html>

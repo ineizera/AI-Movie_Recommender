@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Recommender</title>
+    <link rel="stylesheet" href="static/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|Poppins">
+</head>
+<body>
+    <h1>Movie Recommendations</h1>
+    <form method="post">
+        <input type="text" name="movie_name" placeholder="Enter Movie Name">
+        <button type="submit">Get Recommendations</button>
+    </form>
+
+    {% if error_message %}
+    <p style="color: red;"><strong>{{ error_message }}</strong></p>
+    {% endif %}
+
+
+    {% if movie_data %}
+        <h2>Movie Details</h2>
+        <h3>{{ movie_data.title }}</h3>
+        <img src="{{ movie_data.poster }}" width="200px">
+        <p><strong>Rating:</strong> 
+            {{ "⭐" * (movie_data.rating | int) }} ({{ movie_data.rating }}/10)
+        </p>
+        <p><strong>Description:</strong> {{ movie_data.overview }}</p>
+        <form method="post" action="{{ url_for('add_favorite') }}">
+            <input type="hidden" name="movie_title" value="{{ movie_data.title }}">
+            <button type="submit">⭐ Add to Favorites</button>
+        </form>
+    {% endif %}
+
+    {% if recommendations %}
+    <h2>Recommended Movies</h2>
+    <ul>
+        {% for rec in recommendations %}
+            <li>
+                <a href="{{ url_for('movie_details', movie_title=rec) }}">{{ rec }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+    <hr>
+    <a href="{{ url_for('favorites') }}">📌 View Favorites</a>
+</body>
+</html>

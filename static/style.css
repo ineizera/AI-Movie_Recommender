@@ -1,0 +1,40 @@
+body {
+    font-family: Poppins, sans-serif;
+    background-color: #f4f4f4;
+    text-align: left;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+    font-family: 'Abril Fatface', serif;
+    font-size: 46px;
+}
+
+h2 {
+    color: #333;
+    font-family: 'Abril Fatface', serif;
+    font-size: 30px;
+}
+
+form {
+    margin-top: 20px;
+}
+
+input, button {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background-color: #23c04a;
+    color: white;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #166414;
+}
+
+

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Favorite Movies</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|Poppins">
+</head>
+<body>
+    <h1>⭐ My Favorite Movies</h1>
+
+    {% if favorites %}
+        <ul>
+            {% for movie in favorites %}
+                <li>{{ movie }}</li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('clear_favorites') }}">🗑 Clear Favorites</a>
+    {% else %}
+        <p>No favorite movies added yet!</p>
+    {% endif %}
+
+    <hr>
+    <a href="{{ url_for('index') }}">⬅ Back to Search</a>
+</body>
+</html>
